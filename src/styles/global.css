@@ -1,0 +1,30 @@
+html {
+  --background: white;
+  --gray-200: #222222;
+  --gray-400: #444444;
+  --gray-600: #333333;
+  --gray-900: #111111;
+}
+
+html.dark {
+  --background: black;
+  --gray-200: #eaeaea;
+  --gray-400: #acacac;
+  --gray-600: #ffffff;
+  --gray-900: #fafafa;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  padding: 0 0;
+  color: var(--gray-600);
+  background-color: var(--background);
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 1em;
+  color: lightgray;
+}
