@@ -1,21 +1,46 @@
 ---
-import '../styles/global.css';
-import Footer from '../components/Footer.astro';
-import NavigationBar from '../components/NavigationBar.astro';
+import "../styles/global.css";
+import Footer from "../components/Footer.astro";
+import NavigationBar from "../components/NavigationBar.astro";
 ---
 
-<html lang='en'>
+<html lang="en">
   <head>
-    <meta charset='utf-8' />
-    <meta name='viewport' content='width=device-width' />
-    <meta name='generator' content={Astro.generator} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
     <title>Astro Build</title>
-    <link rel='preconnect' href='https://fonts.googleapis.com' />
-    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href='https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap'
-      rel='stylesheet'
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
     />
+    <script is:inline>
+      const DARK_THEME_CLASS = "dark";
+      const COLOUR_MODE = "COLOUR_MODE";
+      const LIGHT_THEME = "LIGHT";
+      const DARK_THEME = "DARK";
+
+      const rootEl = document.documentElement;
+
+      const getInitialColourMode = () => {
+        // if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        //   return DARK_THEME;
+        // }
+        return window.localStorage.getItem(COLOUR_MODE) || LIGHT_THEME;
+      };
+      const initialColourMode = getInitialColourMode();
+
+      const setInitialColourMode = (mode) => {
+        if (mode === DARK_THEME) {
+          rootEl.classList.add(DARK_THEME_CLASS);
+        } else {
+          rootEl.classList.remove(DARK_THEME_CLASS);
+        }
+      };
+      setInitialColourMode(initialColourMode);
+    </script>
   </head>
   <body>
     <NavigationBar />
