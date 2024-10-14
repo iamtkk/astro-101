@@ -6,6 +6,7 @@ class MiniIsland extends HTMLElement {
   };
 
   async connectedCallback() {
+    // 웹 컴포넌트가 DOM에 추가될 때 자동으로 호출되는 라이프사이클 메서드
     await this.hydrate();
   }
 
@@ -66,8 +67,21 @@ class Conditions {
     return new Promise((resolve) => resolve());
   }
 
-  static waitForVisible(value, node) {
-    return new Promise((resolve) => resolve());
+  static waitForVisible(noop, el) {
+    if (!("IntersectionObserver" in window)) {
+      return;
+    }
+    return new Promise((resolve) => {
+      let observer = new IntersectionObserver((entries) => {
+        let [entry] = entries;
+
+        if (entry.isIntersecting) {
+          observer.unobserve(entry.target);
+          resolve();
+        }
+      });
+      observer.observe(el);
+    });
   }
 
   static getConditions(node) {
