@@ -1,0 +1,15 @@
+{
+  "news": {
+    "title": "NEWS",
+    "navigator": {
+      "all": "ALL",
+      "notice": "NOTICE",
+      "maintenance": "MAINTENANCE",
+      "event": "EVENT",
+      "dev_note": "Developer Notes",
+      "package_deal": "Package Products",
+      "issue": "Known Issues"
+    },
+    "empty": "There is no notice registered."
+  }
+}

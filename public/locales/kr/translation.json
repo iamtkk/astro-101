@@ -1,0 +1,15 @@
+{
+  "news": {
+    "title": "소식",
+    "navigator": {
+      "all": "전체",
+      "notice": "공지사항",
+      "maintenance": "점검",
+      "event": "이벤트",
+      "dev_note": "개발자 노트",
+      "package_deal": "패키지 상품",
+      "issue": "확인된 이슈"
+    },
+    "empty": "현재 등록된 공지가 없습니다."
+  }
+}

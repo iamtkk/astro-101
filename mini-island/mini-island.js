@@ -1,8 +1,8 @@
 class MiniIsland extends HTMLElement {
-  static tagName = "mini-island";
+  static tagName = 'mini-island';
 
   static attributes = {
-    dataIsland: "data-island",
+    dataIsland: 'data-island',
   };
 
   async connectedCallback() {
@@ -39,8 +39,8 @@ class MiniIsland extends HTMLElement {
 
   replaceTemplates(templates) {
     for (const node of templates) {
-      console.log("THE NODE VALUE IS : ", node);
-      console.log("THE NODE CONTENT IS : ", node.content);
+      console.log('THE NODE VALUE IS : ', node);
+      console.log('THE NODE CONTENT IS : ', node.content);
       node.replaceWith(node.content);
     }
   }
@@ -59,8 +59,25 @@ class Conditions {
     visible: Conditions.waitForVisible,
   };
 
-  static waitForMedia() {
-    return new Promise((resolve) => resolve());
+  static waitForMedia(query, el) {
+    let queryList = {
+      matches: true,
+    };
+
+    if (query && 'matchMedia' in window) {
+      queryList = window.matchMedia(query);
+    }
+
+    if (queryList.matches) {
+      return;
+    }
+    return new Promise((resolve) => {
+      queryList.addListener((e) => {
+        if (e.matches) {
+          resolve();
+        }
+      });
+    });
   }
 
   static waitForIdle() {
@@ -68,7 +85,7 @@ class Conditions {
   }
 
   static waitForVisible(noop, el) {
-    if (!("IntersectionObserver" in window)) {
+    if (!('IntersectionObserver' in window)) {
       return;
     }
     return new Promise((resolve) => {
@@ -105,10 +122,10 @@ class Conditions {
   }
 }
 
-if ("customElements" in window) {
+if ('customElements' in window) {
   window.customElements.define(MiniIsland.tagName, MiniIsland);
 } else {
   console.error(
-    "Island cannot be initiated because Window.customElements is unavailable"
+    'Island cannot be initiated because Window.customElements is unavailable'
   );
 }
